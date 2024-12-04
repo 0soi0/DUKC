@@ -1,23 +1,9 @@
 const db = require('../db/mariadb').conn
 
-//모임 등록
-exports.addClass = function(name,place) {
+//가게 정보 전부수정
+exports.storeAll = function(id,name,code) {
     return new Promise(function(resolve,reject) {
-        db.query('INSERT INTO class VALUES(?,?,?)',['0',name,place],function(err,result) {
-            if(!err) {
-                console.log(result);
-                resolve(result);
-            } else {
-                console.log(err);
-                reject(err);
-            }
-        });
-    })
-}
-//모임 정보 입력
-exports.addClassInfo = function(code,min,max,date,price,book,link,desc,level,mode,goal,img,video) {
-    return new Promise(function(resolve,reject) {
-        db.query('INSERT INTO class_info VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)',[code,min,max,date,price,book,link,desc,level,mode,goal,img,video],function(err,result) {
+        db.query('UPDATE store_info set name = ?, code = ? WHERE id = ?',[name,code,id],function(err,result) {
             if(!err) {
                 console.log(result);
                 resolve(result);
@@ -29,10 +15,25 @@ exports.addClassInfo = function(code,min,max,date,price,book,link,desc,level,mod
     })
 }
 
-//체스 모드 종류 입력
-exports.chessmode = function(mode) {
+//가게 정보 이름 수정
+exports.storeName = function(id,name) {
     return new Promise(function(resolve,reject) {
-        db.query('INSERT INTO chess_mode VALUES(?,?)',['0',mode],function(err,result) {
+        db.query('UPDATE store_info set name = ? WHERE id = ?',[name,id],function(err,result) {
+            if(!err) {
+                console.log(result);
+                resolve(result);
+            } else {
+                console.log(err);
+                reject(err);
+            }
+        });
+    })
+}
+
+//가게 정보 지역 수정
+exports.storeCode = function(id,code) {
+    return new Promise(function(resolve,reject) {
+        db.query('UPDATE store_info set code = ? WHERE id = ?',[code,id],function(err,result) {
             if(!err) {
                 console.log(result);
                 resolve(result);

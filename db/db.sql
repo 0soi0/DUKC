@@ -14,10 +14,10 @@ CREATE TABLE `class_info` (
 	`class_link`	varchar(50)	NULL,
 	`class_desc`	varchar(50)	NULL,
 	`class_level`	varchar(20)	NULL,
-	`chess_code`	int4	NOT NULL,
+	`chess_mode`	int4	NOT NULL,
 	`class_goal`	varchar(50)	NULL,
 	`class_img`	varchar(50)	NULL,
-	`Field`	varchar(50)	NULL
+	`class_video`	varchar(50)	NULL
 );
 
 CREATE TABLE `chess_mode` (
@@ -65,8 +65,14 @@ REFERENCES `board` (
 );
 
 ALTER database dukc defalut character set utf8mb3;
+ALTER TABLE class_info defalut character set utf8mb3;
 
 INSERT INTO chess_mode VALUES(1,'스탠다드');
 INSERT INTO chess_mode VALUES(2,'레피드');
 INSERT INTO chess_mode VALUES(3,'블리츠');
 INSERT INTO chess_mode VALUES(4,'불릿');
+
+SELECT * FROM class;
+SELECT * FROM class c INNER JOIN class_info i ON(c.code = i.code) WHERE c.code =
+INSERT INTO class VALUES()
+INSERT INTO class_info VALUES()
