@@ -1,9 +1,10 @@
 const db = require('../db/mariadb').conn
 
 //모임 등록
-exports.addClass = function(name,place) {
+exports.addClass = function(cdto) {
+    const classDTO = cdto;
     return new Promise(function(resolve,reject) {
-        db.query('INSERT INTO class VALUES(?,?,?)',['0',name,place],function(err,result) {
+        db.query('INSERT INTO class VALUES(?,?,?)',['0',classDTO.name,classDTO.place],function(err,result) {
             if(!err) {
                 console.log(result);
                 resolve(result);

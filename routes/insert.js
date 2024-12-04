@@ -2,14 +2,15 @@ var express = require('express');
 var router = express.Router();
 
 const insertRepository = require('../repository/insertRepository');
+const cdto = require('../dto/classDTO');
+const { plainToInstance } = require('class-transformer');
 
 //get == query post == body
 
 //체스모임 등록
 router.post('/addClass', function(req,res) {
-  let name = req.body.name;
-  let place = req.body.place;
-  insertRepository.addClass(name,place).then((result) => {
+  const classDTO = plainToInstance(cdto, {...req.body , code : 0});
+  insertRepository.addClass(classDTO).then((result) => {
     res.send(JSON.stringify({
       code : 201
     }));
