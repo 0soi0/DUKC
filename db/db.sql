@@ -30,7 +30,7 @@ CREATE TABLE `board` (
 	`writer`	varchar(10)	NOT NULL,
 	`title`	varchar(50)	NOT NULL,
 	`content`	varchar(100)	NULL,
-	`time`	datetime	NOT NULL,
+	`time`	datetime NOT NULL,
 	`password`	varchar(10)	NOT NULL
 );
 
@@ -39,7 +39,8 @@ CREATE TABLE `comment` (
 	`board_code`	int(10)	NOT NULL,
 	`writer`	varchar(10)	NOT NULL,
 	`content`	varchar(50)	NOT NULL,
-	`date`	datetime	NOT NULL,
+	`date`	datetime NOT NULL,
+	`password`	varchar(10)	NOT NULL
     CONSTRAINT PRIMARY KEY (comment_code,board_code)
 );
 
@@ -55,14 +56,14 @@ ALTER TABLE `class_info` ADD CONSTRAINT `FK_class_TO_class_info_1` FOREIGN KEY (
 )
 REFERENCES `class` (
 	`code`
-);
+) ON delete cascade;
 
 ALTER TABLE `comment` ADD CONSTRAINT `FK_board_TO_comment_1` FOREIGN KEY (
 	`board_code`
 )
 REFERENCES `board` (
 	`board_code`
-);
+) ON delete cascade;
 
 ALTER database dukc defalut character set utf8mb3;
 ALTER TABLE class_info defalut character set utf8mb3;
@@ -76,3 +77,4 @@ SELECT * FROM class;
 SELECT * FROM class c INNER JOIN class_info i ON(c.code = i.code) WHERE c.code =
 INSERT INTO class VALUES()
 INSERT INTO class_info VALUES()
+

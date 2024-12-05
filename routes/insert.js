@@ -1,15 +1,18 @@
 var express = require('express');
 var router = express.Router();
+const { plainToInstance } = require('class-transformer');
 
 const insertRepository = require('../repository/insertRepository');
 const cdto = require('../dto/classDTO');
-const { plainToInstance } = require('class-transformer');
+const cidto = require('../dto/classInfoDTO');
+const bdto = require('../dto/boardDTO');
+const codto = require('../dto/commentDTO');
 
 //get == query post == body
 
 //체스모임 등록
-router.post('/addClass', function(req,res) {
-  const classDTO = plainToInstance(cdto, {...req.body , code : 0});
+router.post('/add/class', function(req,res) {
+  const classDTO = plainToInstance(cdto,req.body);
   insertRepository.addClass(classDTO).then((result) => {
     res.send(JSON.stringify({
       code : 201
@@ -22,21 +25,37 @@ router.post('/addClass', function(req,res) {
 });
 
 //체스모임 정보 기입
-router.post('./addClassInfo',function(req,res) {
-  let code = req.body.code
-  let min = req.body.min
-  let max = req.body.max
-  let date = req.body.date
-  let price = req.body.price
-  let book = req.body.book
-  let link = req.body.link
-  let desc = req.body.desc
-  let level = req.body.level
-  let mode = req.body.mode
-  let goal = req.body.goal
-  let img = req.body.img
-  let video = req.body.video
-  insertRepository.addClassInfo(code,min,max,date,price,book,link,desc,level,mode,goal,img,video).then((result) => {
+router.post('/add/classInfo',function(req,res) {
+  const classInfoDTO = plainToInstance(cidto,req.body);
+  insertRepository.addClassInfo(classInfoDTO).then((result) => {
+    res.send(JSON.stringify({
+      code : 201
+    }));
+  }).catch((err) => {
+    res.send(JSON.stringify({
+      code : 400
+    }));
+  })
+});
+
+//게시글 작성
+router.post('/add/board',function(req,res) {
+  const boardDTO = plainToInstance(bdto,req.body);
+  insertRepository.addBoard(boardDTO).then((result) => {
+    res.send(JSON.stringify({
+      code : 201
+    }));
+  }).catch((err) => {
+    res.send(JSON.stringify({
+      code : 400
+    }));
+  })
+});
+
+//댓글 작성
+router.post('/add/comment',function(req,res) {
+  const commentDto = plainToInstance(codto,req.body);
+  insertRepository.addComment(commentDto).then((result) => {
     res.send(JSON.stringify({
       code : 201
     }));
