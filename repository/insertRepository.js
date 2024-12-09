@@ -2,9 +2,8 @@ const db = require('../db/mariadb').conn
 
 //모임 등록
 exports.addClass = function(cdto) {
-    const classDTO = cdto;
     return new Promise(function(resolve,reject) {
-        db.query('INSERT INTO class VALUES(?,?,?)',['0',classDTO.name,classDTO.place],function(err,result) {
+        db.query('INSERT INTO class VALUES(?,?,?)',['0',cdto.name,cdto.place],function(err,result) {
             if(!err) {
                 console.log(result);
                 resolve(result);
@@ -32,10 +31,9 @@ exports.addClassInfo = function(cidto) {
 }
 
 //게시물 작성
-exports.addBoard = function(cdto) {
-    const boardDTO = cdto;
+exports.addBoard = function(bdto) {
     return new Promise(function(resolve,reject) {
-        db.query('INSERT INTO board VALUES(?,?,?,?,?,?)',['0',boardDTO.writer,boardDTO.title,boardDTO.content,boardDTO.date,boardDTO.password],function(err,result) {
+        db.query('INSERT INTO board VALUES(?,?,?,?,?,?)',['0',bdto.writer,bdto.title,bdto.content,bdto.date,bdto.password],function(err,result) {
             if(!err) {
                 console.log(result);
                 resolve(result);
@@ -49,9 +47,8 @@ exports.addBoard = function(cdto) {
 
 //댓글 작성
 exports.addComment = function(cdto) {
-    const commentDTO = cdto;
     return new Promise(function(resolve,reject) {
-        db.query('INSERT INTO comment VALUES(?,?,?,?,?,?)',['0',commentDTO.boardCode,commentDTO.writer,commentDTO.content,commentDTO.date,commentDTO.password],function(err,result) {
+        db.query('INSERT INTO comment VALUES(?,?,?,?,?,?)',['0',cdto.boardCode,cdto.writer,cdto.content,cdto.date,cdto.password],function(err,result) {
             if(!err) {
                 console.log(result);
                 resolve(result);

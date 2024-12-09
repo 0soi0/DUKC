@@ -32,7 +32,7 @@ exports.classForMap = function() {
 //모임 정보 조회
 exports.classInfo = function(code) {
     return new Promise(function(resolve,reject) {
-        var sql = 'SELECT * FROM class c INNER JOIN class_info i ON(c.code = i.code) WHERE c.code = ' + db.escape(code);
+        var sql = 'SELECT * FROM class_info c INNER JOIN chess_mode i ON(c.chess_mode = i.chess_code) WHERE c.code = ' + db.escape(code);
         db.query(sql, function(err,rows) {
             if(!err) {
                 resolve(err);
