@@ -77,4 +77,5 @@ SELECT * FROM class;
 SELECT * FROM class c INNER JOIN class_info i ON(c.code = i.code) WHERE c.code =
 INSERT INTO class VALUES()
 INSERT INTO class_info VALUES()
+SELECT * FROM class_info c INNER JOIN chess_mode i ON(c.chess_mode = i.chess_code) WHERE c.code =
 
