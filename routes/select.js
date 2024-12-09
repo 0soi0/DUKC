@@ -14,40 +14,58 @@ router.get('/test', function(req, res) {
   })
 });
 
-//지역별 점포보기
-router.get('/sido/store', function(req,res) {
-  let requestCode = req.query.code;
-
-  selectRepository.sido_store(requestCode).then((rows) => {
+//모임 전체보기(카카오맵용)
+router.get('/boardAll', function(req, res) {
+  selectRepository.classForMap().then((rows) => {
     console.log(rows);
     res.send(rows);
   }).catch((err) => {
-    console.log('error is : '+err);
+    console.log('error is ='+err);
   })
 });
 
-//지역별 매출보기(월기준)
-router.get('/sido/sales', function(req,res) {
-    let requestCode = req.query.code;
-    let requestMonth = req.query.month;
-
-    selectRepository.sido_sales(requestCode,requestMonth).then((rows) => {
-      res.send(rows);
-    }).catch((err) => {
-      console.log('error is : '+err);
-    })
-});
-
-//날짜별로 가게의 매출 현황보기
-router.get('/sales/store', function(req, res) {
-  let requestId = req.query.id;
-  let requestMonth = req.query.month;
-
-  selectRepository.sales_store(requestId,requestMonth).then((rows) => {
+//모임 정보 보기
+router.get('/boardAll', function(req, res) {
+  let code = req.params.code
+  selectRepository.classInfo(code).then((rows) => {
+    console.log(rows);
     res.send(rows);
   }).catch((err) => {
-    console.log('error is : '+err);
+    console.log('error is ='+err);
   })
 });
+
+//게시물전체 보기
+router.get('/boardAll', function(req, res) {
+  selectRepository.boardAll().then((rows) => {
+    console.log(rows);
+    res.send(rows);
+  }).catch((err) => {
+    console.log('error is ='+err);
+  })
+});
+
+//게시물 보기
+router.get('/boardAll', function(req, res) {
+  let code = req.params.code
+  selectRepository.board(code).then((rows) => {
+    console.log(rows);
+    res.send(rows);
+  }).catch((err) => {
+    console.log('error is ='+err);
+  })
+});
+
+//댓글보기
+router.get('/boardAll', function(req, res) {
+  let code = req.params.code
+  selectRepository.comments(code).then((rows) => {
+    console.log(rows);
+    res.send(rows);
+  }).catch((err) => {
+    console.log('error is ='+err);
+  })
+});
+
 
 module.exports = router;
