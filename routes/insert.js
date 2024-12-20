@@ -8,12 +8,20 @@ const cidto = require('../dto/classInfoDTO');
 const bdto = require('../dto/boardDTO');
 const codto = require('../dto/commentDTO');
 
-//get == query post == body
+/*react 설치
+npm install react react-dom
+npm install webpack webpack-cli webpack-dev-server @babel/core babel-loader @babel/preset-env @babel/preset-react html-webpack-plugin
+*/
+
+//테스트 홈페이지 이동
+router.post('/', function(req,res) {
+  res.sendFile()
+});
 
 //체스모임 등록
-router.post('/add/class', function(req,res) {
+router.post('/class', function(req,res) {
   const classDTO = plainToInstance(cdto,req.body);
-  insertRepository.addClass(classDTO).then((result) => {
+  res.insertRepository.addClass(classDTO).then((result) => {
     res.send(JSON.stringify({
       code : 201
     }));
@@ -25,7 +33,7 @@ router.post('/add/class', function(req,res) {
 });
 
 //체스모임 정보 기입
-router.post('/add/classInfo',function(req,res) {
+router.post('/classInfo',function(req,res) {
   const classInfoDTO = plainToInstance(cidto,req.body);
   insertRepository.addClassInfo(classInfoDTO).then((result) => {
     res.send(JSON.stringify({
@@ -39,7 +47,7 @@ router.post('/add/classInfo',function(req,res) {
 });
 
 //게시글 작성
-router.post('/add/board',function(req,res) {
+router.post('/board',function(req,res) {
   const boardDTO = plainToInstance(bdto,req.body);
   insertRepository.addBoard(boardDTO).then((result) => {
     res.send(JSON.stringify({
@@ -53,7 +61,7 @@ router.post('/add/board',function(req,res) {
 });
 
 //댓글 작성
-router.post('/add/comment',function(req,res) {
+router.post('/comment',function(req,res) {
   const commentDto = plainToInstance(codto,req.body);
   insertRepository.addComment(commentDto).then((result) => {
     res.send(JSON.stringify({
