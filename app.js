@@ -18,7 +18,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/add', insertRouter);
 app.use('/show', selectRouter);
-app.use('/delete', deleteRouter);
 app.use('/patch', patchRouter);
 
 module.exports = app;

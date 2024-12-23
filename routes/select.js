@@ -4,6 +4,11 @@ var router = express.Router();
 //repository연결
 const selectRepository = require('../repository/selectRepository');
 
+//테스트 홈페이지 이동
+router.get('/', function(req,res) {
+  res.sendFile(path.join(__dirname,'../public/index.html'));
+});
+
 //test용 쿼리
 router.get('/test', function(req, res) {
   selectRepository.test().then((rows) => {

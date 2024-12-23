@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const path = require('path');
 const { plainToInstance } = require('class-transformer');
 
 const insertRepository = require('../repository/insertRepository');
@@ -12,11 +13,6 @@ const codto = require('../dto/commentDTO');
 npm install react react-dom
 npm install webpack webpack-cli webpack-dev-server @babel/core babel-loader @babel/preset-env @babel/preset-react html-webpack-plugin
 */
-
-//테스트 홈페이지 이동
-router.post('/', function(req,res) {
-  res.sendFile()
-});
 
 //체스모임 등록
 router.post('/class', function(req,res) {
