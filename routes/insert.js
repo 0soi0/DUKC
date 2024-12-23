@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-const path = require('path');
 const { plainToInstance } = require('class-transformer');
 
 const insertRepository = require('../repository/insertRepository');
