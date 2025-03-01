@@ -17,10 +17,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/', pageViewRouter);
 app.use('/add', insertRouter);
 app.use('/show', selectRouter);
 app.use('/delete', deleteRouter);
 app.use('/patch', patchRouter);
-app.use('/view', pageViewRouter);
 
 module.exports = app;

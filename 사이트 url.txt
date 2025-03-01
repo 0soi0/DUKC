@@ -1,0 +1,25 @@
+사이트 url
+
+일반 유저 기능
+
+www.dukc.kr
+-메인페이지 (지도에 핀을 통하여 모임 위치 보여주기 끝)
+
+www.dukc.kr/chess-club/get/(모임번호)
+-모임정보 페이지
+
+관리자 기능
+
+www.dukc.kr/admin
+-관리자 로그인 페이지
+
+www.dukc.kr/admin/chess-club/post
+-모임등록
+
+www.dukc.kr/admin/chess-club/patch/(모임번호)
+-모임정보 수정
+
+www.dukc.kr/admin/chess-club/delete/(모임번호)
+-모임정보 삭제
+
+
